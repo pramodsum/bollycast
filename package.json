@@ -1,21 +1,13 @@
 {
-  "name": "bollycast",
-  "version": "0.0.0",
-  "description": "Bollywood music chromecast streaming app",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pramodsum/bollycast.git"
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
   },
-  "keywords": [
-    "bollycast"
-  ],
-  "author": "pramodsum",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pramodsum/bollycast/issues"
-  },
-  "homepage": "https://github.com/pramodsum/bollycast",
   "dependencies": {
-      "express": "3.x"
+    "express": "3.4.8",
+    "ejs": "*",
+    "stylus": "*"
   }
 }
