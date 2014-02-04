@@ -8,6 +8,8 @@
   "dependencies": {
     "express": "3.4.8",
     "ejs": "*",
-    "stylus": "*"
+    "stylus": "*",
+    "http": "0.0.0",
+    "path": "~0.4.9"
   }
 }
