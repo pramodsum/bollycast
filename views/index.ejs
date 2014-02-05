@@ -2,10 +2,65 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand"><%=title%></h3>
+              <ul class="nav masthead-nav">
+                <li><a href="mailto:sumedha.pramod@gmail.com">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <h1 class="cover-heading"><%=title%></h1>
+            <p class="lead"><%=title%> is a Weekly Top 15 Bollywood music streaming app for chromecast. The weekly top 15 list is pulled from Saavn</p>
+            <div class="song-list">
+	            <p class="row">
+	            	<div class="col-sm-2">#1</div>
+	            	<div class="col-sm-2">#2</div>
+	            	<div class="col-sm-2">#3</div>
+	            	<div class="col-sm-2">#4</div>
+	            	<div class="col-sm-2">#5</div>
+	            </p>
+	            <p class="row">
+	            	<div class="col-sm-2">#6</div>
+	            	<div class="col-sm-2">#7</div>
+	            	<div class="col-sm-2">#8</div>
+	            	<div class="col-sm-2">#9</div>
+	            	<div class="col-sm-2">#10</div>
+	            </p>
+	            <p class="row">
+	            	<div class="col-sm-2">#11</div>
+	            	<div class="col-sm-2">#12</div>
+	            	<div class="col-sm-2">#13</div>
+	            	<div class="col-sm-2">#14</div>
+	            	<div class="col-sm-2">#15</div>
+	            </p>
+           	</div>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p><a href="https://github.com/pramodsum">@pramodsum</a></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/docs.min.js"></script>
   </body>
 </html>

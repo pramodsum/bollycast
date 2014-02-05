@@ -10,6 +10,14 @@
     "ejs": "*",
     "stylus": "*",
     "http": "0.0.0",
-    "path": "~0.4.9"
+    "path": "~0.4.9",
+    "request": "~2.33.0",
+    "crypto": "0.0.3",
+    "crypto-js": "~3.1.2-2",
+    "authhmac": "0.0.2",
+    "fastcgi-parser": "~0.1.5",
+    "fastcgi": "*",
+    "hmmac": "~0.1.1",
+    "mashape-oauth": "~0.1.6"
   }
 }
