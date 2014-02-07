@@ -18,6 +18,9 @@
     "fastcgi-parser": "~0.1.5",
     "fastcgi": "*",
     "hmmac": "~0.1.1",
-    "mashape-oauth": "~0.1.6"
+    "mashape-oauth": "~0.1.6",
+    "unirest": "~0.1.1",
+    "jshare": "0.0.8",
+    "jade": "~1.1.5"
   }
 }

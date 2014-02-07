@@ -4,13 +4,18 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
-    <link rel='stylesheet' href='/stylesheets/custom.css' />
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
+    <link rel='stylesheet' href='/stylesheets/custom.css' />
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/docs.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script></script>
   </head>
   <body>
     <div class="site-wrapper">
-      <div class="site-wrapper-inner">
+      <div class="site-wrapper-inner" >
+      <!-- style="background-image: url(/images/posters.jpg); 
+background-repeat:no-repeat; background-position: center; background-size:98%% 98%%" -->
         <div class="cover-container">
 
           <div class="masthead clearfix">
@@ -25,9 +30,15 @@
           <div class="inner cover">
             <h1 class="cover-heading"><%=title%></h1>
             <p class="lead"><%=title%> is a Weekly Top 15 Bollywood music streaming app for chromecast. The weekly top 15 list is pulled from Saavn</p>
-            <div class="song-list">
-	            <p class="row">
-	            	<div class="col-sm-2">#1</div>
+            <!-- <div class="song-list"> -->
+	            <!-- <p class="row"> -->
+                   <p class="row">SONG <%= output_list[0] %></p>
+                   <p class="row">SONG <%= output_list[1] %></p>
+                   <p class="row">SONG <%= output_list[2] %></p>
+                   <p class="row">SONG <%= output_list[3] %></p>
+                   <p class="row">SONG <%= output_list[4] %></p>
+
+<!-- 	            	<div class="col-sm-2">#1</div>
 	            	<div class="col-sm-2">#2</div>
 	            	<div class="col-sm-2">#3</div>
 	            	<div class="col-sm-2">#4</div>
@@ -46,8 +57,9 @@
 	            	<div class="col-sm-2">#13</div>
 	            	<div class="col-sm-2">#14</div>
 	            	<div class="col-sm-2">#15</div>
-	            </p>
-           	</div>
+	            </p> -->
+
+           	<!-- </div> -->
           </div>
 
           <div class="mastfoot">
@@ -59,8 +71,5 @@
         </div>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/docs.min.js"></script>
   </body>
 </html>

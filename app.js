@@ -12,10 +12,13 @@ var path = require('path');
 
 var app = express();
 
+var jshare = require('jshare');
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(jshare());
 app.use(express.favicon());
 app.use(express.logger('dev')); 
 app.use(express.json());
@@ -32,9 +35,19 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+var http = require('http');
+var request = require("request");
+
 var url = "http://m.saavn.com/Weekly+Top+Songs/songs_PL-ltIYSNe0er0_.html?lang=hindi";
 var starting_list = "<div class=\"section\">    ", 
 	ending_list="</div><!-- google_afm -->";
+var filter = "<p class=\"row \">\n        \n        <strong>";
+var private_key = 'cfd2d4b1e7bee9ff103656af5e49b03c';
+var crypto = require("crypto");
+
+var songs = new Array();
+var output_list = new Array();
+var saavn = new String(), starting_index = 0, ending_index = 0;
 
 request({
 	uri: url,
@@ -50,7 +63,7 @@ request({
 	  return;
 	}
 
-	//Get list of top 15 songs
+	// Get list of top 15 songs
 	var list_html = body.substring(starting_index + starting_list.length, ending_index);
 	var songs = new Array();
 	var filter = "<p class=\"row \">\n        \n        <strong>";
@@ -62,49 +75,46 @@ request({
 			console.log("ERROR: didn't find it...");
 		}
 		songs[i] = list[i].substr(0, ending_index);
-		console.dir("PORTION #" + i  + ": " + songs[i]);
+		console.dir("#" + i  + ": " + songs[i]);
 	}
 
 	//Send request to Bollywood API for each song in songs array
-	// var private_key = 'cfd2d4b1e7bee9ff103656af5e49b03c';
-	// var crypto = require("crypto");
-	// var OAuth2 = require('mashape-oauth').OAuth2;
-	// var oa = new OAuth2();
-	// var hash_hmac = crypto.createHmac('sha256', private_key);
+	var private_key = 'cfd2d4b1e7bee9ff103656af5e49b03c';
+	var crypto = require("crypto");
 
-	// for(var i = 0; i < songs.length; i++) {
-	// 	var song_request = "/song/" + songs[i] + "?DeveloperID=5a9b85fd&Version=1.0";
-	// 	var song_url = "http://www.bollywoodapi.com/v1/search" + song_request;
+	for(var i = 0; i < songs.length; i++) {
+		var song_request = "/v1/search/songs/" + songs[i] + "?DeveloperID=5a9b85fd";
+		var song_path = "www.bollywoodapi.com/v1/search" + song_request;
+		var hash_hmac = crypto.createHmac('sha256', private_key);
+		var rfc2104Hmac = hash_hmac.update(new Date().getTime().toString()).digest('base64');
 
-	// 	function generateHmac (data, private_key, algorithm, encoding) {
-	// 	  encoding = encoding || "base64";
-	// 	  algorithm = algorithm || "sha256";
-	// 	  return crypto.createHmac(algorithm, private_key).update(data).digest(encoding);
-	// 	}
-	// 	var rfc2104Hmac = generateHmac(song_request, private_key);
-	// 	console.dir(rfc2104Hmac);
+		var options = {
+			hostname: 'www.bollywoodapi.com',
+			path: song_request,
+			headers: { 'hmac': rfc2104Hmac }
+		};
+		console.dir("HEADERS: " + JSON.stringify(options.headers));
 
-	// 	var options = {
-	// 		'clientId': "5a9b85fd",
-	// 		'clientSecret': private_key,
-	// 		'baseUrl': song_url,
-	// 		'headers': rfc2104Hmac
-	// 	};
-	// 	var callback;
-	// 	oa.get(options, console.dir("error"));
-
-	// 	// request({
-	// 	// 	uri: song_url,
-	// 	// 	header: { 'hmac': rfc2104Hmac }
-	// 	// 	}, function(error, response, body) {
-	// 	// 		console.dir("Song info: " + body);
-	// 	// });
-	// }
+		var req = new http.request(options, function(res) {
+		  console.log('STATUS: ' + res.statusCode);
+		  console.log('HEADERS: ' + JSON.stringify(res.headers));
+		  res.setEncoding('utf8');
+		  res.on('data', function (chunk) {
+		    console.log('BODY: ' + chunk);
+		  });
+		});
+		req.on('error', function(e) {
+		  console.log('problem with request: ' + e.message);
+		});
+		req.write('data\n');
+		req.write('data\n');
+		req.end();
+	}
 });
 
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(app.get('port'), function(req, res){
   console.log('Express server listening on port ' + app.get('port'));
 });
